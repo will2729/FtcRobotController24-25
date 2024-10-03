@@ -14,7 +14,7 @@ public class autocode extends LinearOpMode {
     DcMotor backR;
 
     DcMotor frontR;
-//hgfhgfyfdytfgfgcvysdFgbhkjljuojypynluyj
+
      public void runOpMode() {
          backL = hardwareMap.get(DcMotor.class, "backLeft");
          frontL = hardwareMap.get(DcMotor.class, "backRight");
