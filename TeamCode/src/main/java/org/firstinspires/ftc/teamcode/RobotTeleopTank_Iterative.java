@@ -48,7 +48,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@TeleOp(name="robot: Mc. Tickler", group="Robot")
+@TeleOp(name="robot: Driving the McTickler", group="Robot")
 // @Disabled
 public class RobotTeleopTank_Iterative extends OpMode{
 
