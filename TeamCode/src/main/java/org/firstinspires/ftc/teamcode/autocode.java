@@ -26,28 +26,77 @@ public class autocode extends LinearOpMode {
          frontL.setDirection(DcMotor.Direction.REVERSE);//-
          frontR.setDirection(DcMotor.Direction.REVERSE);//+;
 
-             strafeRight(57,0.5,500);
+             strafeRight(100,0.5,400);
+             straight(100,0.7,250);
+             strafeLeft(100,0.5,400);
      }
          void strafeRight(int distance,double power,long sleeptime){
-              backL.setTargetPosition(distance + backL.getCurrentPosition());
-             frontL.setTargetPosition(-distance + frontL.getCurrentPosition() );
+              backL.setTargetPosition(-distance + backL.getCurrentPosition());
+             frontL.setTargetPosition(distance + frontL.getCurrentPosition() );
              backR.setTargetPosition(distance + backR.getCurrentPosition());
-             frontR.setTargetPosition(distance + frontR.getCurrentPosition());
+             frontR.setTargetPosition(-distance + frontR.getCurrentPosition());
 
              backL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
              backR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
              frontR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
              frontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-             backL.setPower(power);
+             backL.setPower(-power);
              backR.setPower(power);
              frontL.setPower(power);
-             frontR.setPower(power);
+             frontR.setPower(-power);
+
+             sleep(sleeptime);
 
 
 
 
          }
+
+
+            void straight(int distance,double power,long sleeptime){
+
+                backL.setTargetPosition(distance + backL.getCurrentPosition());
+                frontL.setTargetPosition(distance + frontL.getCurrentPosition());
+                backR.setTargetPosition(distance + backR.getCurrentPosition());
+                frontR.setTargetPosition(distance + frontR.getCurrentPosition());
+
+                backL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                backR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                frontR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                frontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                backL.setPower(power);
+                backR.setPower(power);
+                frontL.setPower(power);
+                frontR.setPower(power);
+
+                sleep(sleeptime);
+            }
+
+
+            void strafeLeft(int distance,double power,long sleeptime){
+                    backL.setTargetPosition(distance + backL.getCurrentPosition());
+                    frontL.setTargetPosition(-distance + frontL.getCurrentPosition() );
+                    backR.setTargetPosition(-distance + backR.getCurrentPosition());
+                    frontR.setTargetPosition(distance + frontR.getCurrentPosition());
+
+                    backL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    backR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    frontR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    frontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                    backL.setPower(power);
+                    backR.setPower(-power);
+                    frontL.setPower(-power);
+                    frontR.setPower(power);
+
+                    sleep(sleeptime);
+
+
+
+
+    }
 
     
 
