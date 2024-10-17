@@ -48,7 +48,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@TeleOp(name="robot: Mice Catcher and Tackler Indoor edt. for Conroy Kennedy, Linear Exit Reactive mod. a.k.a. M.C. T.I.C.K.L.E.R.", group="Robot")
+@TeleOp(name="robot: Mc. Tickler", group="Robot")
 // @Disabled
 public class RobotTeleopTank_Iterative extends OpMode{
 
@@ -143,8 +143,8 @@ public class RobotTeleopTank_Iterative extends OpMode{
 
         leftfront.setPower(-strafe);
         leftback.setPower(strafe);
-        rightfront.setPower(-strafe);
-        rightback.setPower(strafe);
+        rightfront.setPower(strafe);
+        rightback.setPower(-strafe);
 
         // Use gamepad left & right Bumpers to open and close the claw
         // if (gamepad1.right_bumper)
