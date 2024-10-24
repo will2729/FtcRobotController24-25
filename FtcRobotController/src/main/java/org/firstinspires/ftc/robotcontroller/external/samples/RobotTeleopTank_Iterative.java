@@ -79,7 +79,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         rightfront = hardwareMap.get(DcMotor.class, "fr");
         leftback  = hardwareMap.get(DcMotor.class, "bl");
         rightback = hardwareMap.get(DcMotor.class, "br");
-        // leftArm    = hardwareMap.get(DcMotor.class, "left_arm");
+        //leftArm    = hardwareMap.get(DcMotor.class, "left_arm");
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // Pushing the left and right sticks forward MUST make robot go forward. So adjust these two lines based on your first test drive.
