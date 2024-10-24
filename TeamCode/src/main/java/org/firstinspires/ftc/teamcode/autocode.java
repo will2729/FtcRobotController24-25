@@ -27,15 +27,15 @@ public class autocode extends LinearOpMode {
          frontR.setDirection(DcMotor.Direction.REVERSE);//+;
 //
          waitForStart();
-         straight(300, 0.7, 100);
-         reverse(600,0.7,100);
-         straight(300,0.7,500);
-         strafeLeft(300,0.5,100);
-         strafeRight(600,0.5,100);
-         strafeLeft(300,0.5,500);
-         turn_left(100,0.5,100);
-         turn_right(200,0.5,100);
-         turn_left(100,0.5,500);
+         straight(200, 0.7, 100);
+         reverse(400,0.7,100);
+         straight(200,0.7,500);
+         strafeLeft(200,0.5,100);
+         strafeRight(400,0.5,100);
+         strafeLeft(200,0.5,500);
+         turn_left(50,0.5,100);
+         turn_right(100,0.5,100);
+         turn_left(50,0.5,500);
 
 //
 
