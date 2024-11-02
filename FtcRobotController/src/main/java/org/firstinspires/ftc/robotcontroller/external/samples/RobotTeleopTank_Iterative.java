@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 // import com.qualcomm.robotcore.hardware.Servo;
 // import com.qualcomm.robotcore.util.Range;
 
@@ -49,7 +50,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Robot: McTickler", group="Robot")
+@TeleOp(name="Robot: DriveMcTickler", group="Robot")
 // @Disabled
 public class RobotTeleopTank_Iterative extends OpMode{
 
@@ -58,7 +59,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
     public DcMotor  rightfront  = null;
     public DcMotor  leftback  = null;
     public DcMotor  rightback  = null;
-    // public DcMotor  leftArm     = null;
+    public DcMotor  arm = null;
     // public Servo    leftClaw    = null;
     // public Servo    rightClaw   = null;
 
@@ -79,7 +80,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         rightfront = hardwareMap.get(DcMotor.class, "fr");
         leftback  = hardwareMap.get(DcMotor.class, "bl");
         rightback = hardwareMap.get(DcMotor.class, "br");
-        //leftArm    = hardwareMap.get(DcMotor.class, "left_arm");
+        arm    = hardwareMap.get(DcMotor.class, "arm");
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // Pushing the left and right sticks forward MUST make robot go forward. So adjust these two lines based on your first test drive.
@@ -88,6 +89,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         rightfront.setDirection(DcMotor.Direction.REVERSE);
         leftback.setDirection(DcMotor.Direction.REVERSE);
         rightback.setDirection(DcMotor.Direction.FORWARD);
+        arm.setDirection(DcMotor.Direction.FORWARD);
 
 
         // If there are encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
