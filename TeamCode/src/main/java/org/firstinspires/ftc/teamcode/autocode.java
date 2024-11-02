@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@Autonomous
+@Autonomous (name = "AutoMcTickler", group = "Robot")
 public class autocode extends LinearOpMode {
 
     DcMotor backL;
@@ -16,10 +16,10 @@ public class autocode extends LinearOpMode {
     DcMotor frontR;
 
      public void runOpMode() {
-         backL = hardwareMap.get(DcMotor.class, "backLeft");
-         frontL = hardwareMap.get(DcMotor.class, "backRight");
-         backR = hardwareMap.get(DcMotor.class, "frontLeft");
-         frontR = hardwareMap.get(DcMotor.class, "frontRight");
+         backL = hardwareMap.get(DcMotor.class, "bl");
+         frontL = hardwareMap.get(DcMotor.class, "fl");
+         backR = hardwareMap.get(DcMotor.class, "br");
+         frontR = hardwareMap.get(DcMotor.class, "fr");
 
          backL.setDirection(DcMotor.Direction.REVERSE);//-
          backR.setDirection(DcMotor.Direction.FORWARD);//+
@@ -27,15 +27,15 @@ public class autocode extends LinearOpMode {
          frontR.setDirection(DcMotor.Direction.REVERSE);//+;
 //
          waitForStart();
-         straight(200, 0.7, 100);
-         reverse(400,0.7,100);
-         straight(200,0.7,500);
-         strafeLeft(200,0.5,100);
-         strafeRight(400,0.5,100);
-         strafeLeft(200,0.5,500);
-         turn_left(50,0.5,100);
-         turn_right(100,0.5,100);
-         turn_left(50,0.5,500);
+         straight(1000, 0.7, 500);
+         reverse(2000,0.7,500);
+         straight(1000,0.7,500);
+         strafeLeft(1000,0.5,500);
+         strafeRight(2000,0.5,500);
+         strafeLeft(1000,0.5,500);
+         turn_left(250,0.5,500);
+         turn_right(5000,0.5,500);
+         turn_left(250,0.5,500);
 
 //
 
@@ -51,10 +51,10 @@ public class autocode extends LinearOpMode {
              frontR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
              frontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-             backL.setPower(-power);
+             backL.setPower(power);
              backR.setPower(power);
              frontL.setPower(power);
-             frontR.setPower(-power);
+             frontR.setPower(power);
 
              sleep(sleeptime);
 
@@ -98,8 +98,8 @@ public class autocode extends LinearOpMode {
                 frontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
                 backL.setPower(power);
-                backR.setPower(-power);
-                frontL.setPower(-power);
+                backR.setPower(power);
+                frontL.setPower(power);
                 frontR.setPower(power);
 
                 sleep(sleeptime);
@@ -117,10 +117,10 @@ public class autocode extends LinearOpMode {
                 frontR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 frontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                backL.setPower(-power);
-                backR.setPower(-power);
-                frontL.setPower(-power);
-                frontR.setPower(-power);
+                backL.setPower(power);
+                backR.setPower(power);
+                frontL.setPower(power);
+                frontR.setPower(power);
 
                 sleep(sleeptime);
 
@@ -138,9 +138,9 @@ public class autocode extends LinearOpMode {
                     frontR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     frontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                    backL.setPower(-power);
+                    backL.setPower(power);
                     backR.setPower(power);
-                    frontL.setPower(-power);
+                    frontL.setPower(power);
                     frontR.setPower(power);
 
                     sleep(sleeptime);
@@ -161,9 +161,9 @@ public class autocode extends LinearOpMode {
                         frontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
                         backL.setPower(power);
-                        backR.setPower(-power);
+                        backR.setPower(power);
                         frontL.setPower(power);
-                        frontR.setPower(-power);
+                        frontR.setPower(power);
 
                         sleep(sleeptime);
                     }
