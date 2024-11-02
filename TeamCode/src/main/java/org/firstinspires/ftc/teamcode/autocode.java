@@ -30,7 +30,7 @@ public class autocode extends LinearOpMode {
          straight(1000, 0.9, 5000);
          reverse(2000,0.9,5000);
          straight(1000,0.9,5000);
-         strafeLeft(1000,0.7,5000);
+         strafeLeft(1000,0.7,5000);       //hello world
          strafeRight(2000,0.7,5000);
          strafeLeft(1000,0.7,5000);
          turn_left(250,0.6,5000);
