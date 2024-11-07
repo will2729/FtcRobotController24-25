@@ -33,6 +33,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+import org.firstinspires.ftc.robotcore.internal.camera.delegating.DelegatingCaptureSequence;
 // import com.qualcomm.robotcore.hardware.Servo;
 // import com.qualcomm.robotcore.util.Range;
 
@@ -58,7 +60,8 @@ public class RobotTeleopTank_Iterative extends OpMode{
     public DcMotor  rightfront  = null;
     public DcMotor  leftback  = null;
     public DcMotor  rightback  = null;
-    // public DcMotor  arm = null;
+    public DcMotor  arm = null;
+    public DcMotor  armextend = null;
     // public Servo    leftClaw    = null;
     // public Servo    rightClaw   = null;
 
@@ -79,7 +82,8 @@ public class RobotTeleopTank_Iterative extends OpMode{
         rightfront = hardwareMap.get(DcMotor.class, "fr");
         leftback  = hardwareMap.get(DcMotor.class, "bl");
         rightback = hardwareMap.get(DcMotor.class, "br");
-      //  arm = hardwareMap.get(DcMotor.class, "arm");
+        arm = hardwareMap.get(DcMotor.class, "arm");
+        armextend = hardwareMap.get(DcMotor.class, "armextend");
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // Pushing the left and right sticks forward MUST make robot go forward. So adjust these two lines based on your first test drive.
@@ -88,7 +92,8 @@ public class RobotTeleopTank_Iterative extends OpMode{
         rightfront.setDirection(DcMotor.Direction.REVERSE);
         leftback.setDirection(DcMotor.Direction.REVERSE);
         rightback.setDirection(DcMotor.Direction.FORWARD);
-      //  arm.setDirection(DcMotor.Direction.REVERSE);
+        arm.setDirection(DcMotor.Direction.REVERSE);
+        armextend.setDirection(DcMotor.Direction.REVERSE);
 
 
         // If there are encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
@@ -127,15 +132,19 @@ public class RobotTeleopTank_Iterative extends OpMode{
         double front;
         double turn;
         double strafe;
-       // double armdown;
-      //  double armup;
+        double armdown;
+        double armup;
+        boolean armback;
+        boolean armforward;
 
         // Run wheels in tank mode (note: The joystick goes negative when pushed forward, so negate it)
         front = -gamepad1.left_stick_y;
         turn = -gamepad1.right_stick_x;
         strafe = -gamepad1.left_stick_x;
-      //  armdown = -gamepad1.left_trigger;
-     //   armup = -gamepad1.right_trigger;
+        armdown = -gamepad1.left_trigger;
+        armup = -gamepad1.right_trigger;
+        armforward = gamepad1.dpad_up;
+        armback = gamepad1.dpad_down;
 
         leftfront.setPower(front);
         leftback.setPower(front);
@@ -152,8 +161,22 @@ public class RobotTeleopTank_Iterative extends OpMode{
         rightfront.setPower(strafe);
         rightback.setPower(-strafe);
 
-       // arm.setPower(-armdown);
-       // arm.setPower(armup);
+        arm.setPower(-armdown);
+        arm.setPower(armup);
+
+        if (armforward) {
+            armextend.setPower(0.25);
+        }
+        else if (armback) {
+            armextend.setPower(-0.25);
+        }
+
+        else {
+            armextend.setPower(0);
+        }
+
+
+
 
         // Use gamepad left & right Bumpers to open and close the claw
         // if (gamepad1.right_bumper)
@@ -179,8 +202,10 @@ public class RobotTeleopTank_Iterative extends OpMode{
         telemetry.addData("left",  "%.2f", front);
         telemetry.addData("right", "%.2f", turn);
         telemetry.addData("right", "%.2f", strafe);
-      //  telemetry.addData("right", "%.2f", armup);
-      //  telemetry.addData("right", "%.2f", armdown);
+        telemetry.addData("right", "%.2f", armup);
+        telemetry.addData("right", "%.2f", armdown);
+        telemetry.addData("right", "%.2f", armforward);
+        telemetry.addData("right", "%.2f", armback);
     }
 
     /*
