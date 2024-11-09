@@ -32,9 +32,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-
-import org.firstinspires.ftc.robotcore.internal.camera.delegating.DelegatingCaptureSequence;
 // import com.qualcomm.robotcore.hardware.Servo;
 // import com.qualcomm.robotcore.util.Range;
 
@@ -92,12 +89,14 @@ public class RobotTeleopTank_Iterative extends OpMode{
         rightfront.setDirection(DcMotor.Direction.REVERSE);
         leftback.setDirection(DcMotor.Direction.REVERSE);
         rightback.setDirection(DcMotor.Direction.FORWARD);
-        arm.setDirection(DcMotor.Direction.REVERSE);
+        arm.setDirection(DcMotor.Direction.FORWARD);
         armextend.setDirection(DcMotor.Direction.FORWARD);
 
 
         // If there are encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
-         armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armextend.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         // rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Define and initialize ALL installed servos.
@@ -132,8 +131,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         double front;
         double turn;
         double strafe;
-        double armdown;
-        double armup;
+        double armdirection;
         boolean armback;
         boolean armforward;
 
@@ -141,8 +139,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         front = -gamepad1.left_stick_y;
         turn = -gamepad1.right_stick_x;
         strafe = -gamepad1.left_stick_x;
-        armdown = -gamepad1.left_trigger;
-        armup = -gamepad1.right_trigger;
+        armdirection = -gamepad1.left_trigger + gamepad1.right_trigger;
         armforward = gamepad1.dpad_up;
         armback = gamepad1.dpad_down;
 
@@ -161,18 +158,17 @@ public class RobotTeleopTank_Iterative extends OpMode{
         rightfront.setPower(strafe);
         rightback.setPower(-strafe);
 
-        arm.setPower(-armdown);
-        arm.setPower(armup);
+        arm.setPower(-armdirection);
 
 
 
-        if (armforward && armextend.getCurrentPosition() < 500){
+        if (armforward && armextend.getCurrentPosition() < -1000){
 
-            armextend.setPower(0.25);
+            armextend.setPower(0.45);
         }
         else if (armback && armextend.getCurrentPosition() > 0) {
 
-            armextend.setPower(-0.25);
+            armextend.setPower(-0.45);
         }
 
         else {
@@ -186,7 +182,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         // if (gamepad1.right_bumper)
          //   clawOffset += CLAW_SPEED;
        // else if (gamepad1.left_bumper)
-         //   clawOffset -= CLAW_SPEED;
+         //   clawOffset -= CLAW_SPEED;0
 
         // Move both servos to new position.  Assume servos are mirror image of each other.
         // clawOffset = Range.clip(clawOffset, -0.5, 0.5);
@@ -206,10 +202,9 @@ public class RobotTeleopTank_Iterative extends OpMode{
         telemetry.addData("left",  "%.2f", front);
         telemetry.addData("right", "%.2f", turn);
         telemetry.addData("right", "%.2f", strafe);
-        telemetry.addData("right", "%.2f", armup);
-        telemetry.addData("right", "%.2f", armdown);
-        telemetry.addData("right", "%.2f", armforward);
-        telemetry.addData("right", "%.2f", armback);
+        telemetry.addData("right", "%.2f", armdirection);
+        telemetry.addData("right", armforward);
+        telemetry.addData("right", armback);
         telemetry.addData("armextend position", armextend.getCurrentPosition());
     }
 
