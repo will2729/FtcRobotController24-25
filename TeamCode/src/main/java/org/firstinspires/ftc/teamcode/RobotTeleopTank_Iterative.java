@@ -93,7 +93,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         leftback.setDirection(DcMotor.Direction.REVERSE);
         rightback.setDirection(DcMotor.Direction.FORWARD);
         arm.setDirection(DcMotor.Direction.REVERSE);
-        armextend.setDirection(DcMotor.Direction.REVERSE);
+        armextend.setDirection(DcMotor.Direction.FORWARD);
 
 
         // If there are encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
