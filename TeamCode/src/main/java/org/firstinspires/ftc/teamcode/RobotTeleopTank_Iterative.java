@@ -97,7 +97,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
 
 
         // If there are encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
-        // leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+         armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Define and initialize ALL installed servos.
@@ -164,10 +164,14 @@ public class RobotTeleopTank_Iterative extends OpMode{
         arm.setPower(-armdown);
         arm.setPower(armup);
 
-        if (armforward) {
+
+
+        if (armforward && armextend.getCurrentPosition() < 500){
+
             armextend.setPower(0.25);
         }
-        else if (armback) {
+        else if (armback && armextend.getCurrentPosition() > 0) {
+
             armextend.setPower(-0.25);
         }
 
@@ -206,6 +210,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         telemetry.addData("right", "%.2f", armdown);
         telemetry.addData("right", "%.2f", armforward);
         telemetry.addData("right", "%.2f", armback);
+        telemetry.addData("armextend position", armextend.getCurrentPosition());
     }
 
     /*
