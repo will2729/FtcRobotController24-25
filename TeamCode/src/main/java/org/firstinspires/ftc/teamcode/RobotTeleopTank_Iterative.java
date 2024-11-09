@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 // import com.qualcomm.robotcore.hardware.Servo;
 // import com.qualcomm.robotcore.util.Range;
 
@@ -90,7 +91,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         leftback.setDirection(DcMotor.Direction.REVERSE);
         rightback.setDirection(DcMotor.Direction.FORWARD);
         arm.setDirection(DcMotor.Direction.FORWARD);
-        armextend.setDirection(DcMotor.Direction.FORWARD);
+        armextend.setDirection(DcMotor.Direction.REVERSE);
 
 
         // If there are encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
@@ -162,7 +163,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
 
 
 
-        if (armforward && armextend.getCurrentPosition() < -1000){
+        if (armforward && armextend.getCurrentPosition() < 1000){
 
             armextend.setPower(0.45);
         }
