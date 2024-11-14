@@ -31,9 +31,10 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-// import com.qualcomm.robotcore.hardware.Servo;
+// import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 // import com.qualcomm.robotcore.util.Range;
 
 /*
@@ -60,8 +61,8 @@ public class RobotTeleopTank_Iterative extends OpMode{
     public DcMotor  rightback  = null;
     public DcMotor  arm = null;
     public DcMotor  armextend = null;
-    // public Servo    leftClaw    = null;
-    // public Servo    rightClaw   = null;
+     public CRServo    grabber    = null;
+     public Servo    rotator   = null;
 
      // double clawOffset = 0;
 
@@ -90,19 +91,25 @@ public class RobotTeleopTank_Iterative extends OpMode{
         rightfront.setDirection(DcMotor.Direction.REVERSE);
         leftback.setDirection(DcMotor.Direction.REVERSE);
         rightback.setDirection(DcMotor.Direction.FORWARD);
-        arm.setDirection(DcMotor.Direction.FORWARD);
+        arm.setDirection(DcMotor.Direction.REVERSE);
         armextend.setDirection(DcMotor.Direction.REVERSE);
+
+
+        arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        armextend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
 
         // If there are encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
         armextend.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Define and initialize ALL installed servos.
-        // leftClaw  = hardwareMap.get(Servo.class, "left_hand");
-        // rightClaw = hardwareMap.get(Servo.class, "right_hand");
+         grabber  = hardwareMap.get(CRServo.class, "s_grab");
+         rotator = hardwareMap.get(Servo.class, "s_rot");
        // leftClaw.setPosition(MID_SERVO);
        // rightClaw.setPosition(MID_SERVO);
 
@@ -132,38 +139,57 @@ public class RobotTeleopTank_Iterative extends OpMode{
         double front;
         double turn;
         double strafe;
-        double armdirection;
+        boolean armup;
+        boolean armdown;
         boolean armback;
         boolean armforward;
+        boolean servrotpos;
+        boolean servrotneg;
+        double servgrabtrue;
+        double servgrabfalse;
 
         // Run wheels in tank mode (note: The joystick goes negative when pushed forward, so negate it)
         front = -gamepad1.left_stick_y;
         turn = -gamepad1.right_stick_x;
         strafe = -gamepad1.left_stick_x;
-        armdirection = -gamepad1.left_trigger + gamepad1.right_trigger;
+        armup = gamepad1.y;
+        armdown = gamepad1.a;
         armforward = gamepad1.dpad_up;
         armback = gamepad1.dpad_down;
 
-        leftfront.setPower(front);
-        leftback.setPower(front);
-        rightfront.setPower(front);
-        rightback.setPower(front);
+        servrotpos = gamepad1.right_bumper;
+        servrotneg = gamepad1.left_bumper;
+        servgrabtrue = gamepad1.right_trigger;
+        servgrabfalse = gamepad1.left_trigger;
 
-        leftfront.setPower(-turn);
-        leftback.setPower(-turn);
-        rightfront.setPower(turn);
-        rightback.setPower(turn);
+        leftfront.setPower(front - turn - strafe);
+        leftback.setPower(front - turn + strafe);
+        rightfront.setPower(front + turn + strafe);
+        rightback.setPower(front + turn - strafe);
 
-        leftfront.setPower(-strafe);
-        leftback.setPower(strafe);
-        rightfront.setPower(strafe);
-        rightback.setPower(-strafe);
+//        leftfront.setPower(-turn);
+//        leftback.setPower(-turn);
+//        rightfront.setPower(turn);
+//        rightback.setPower(turn);
+//
+//        leftfront.setPower(-strafe);
+//        leftback.setPower(strafe);
+//        rightfront.setPower(strafe);
+//        rightback.setPower(-strafe);
 
-        arm.setPower(-armdirection);
+        if (armup && arm.getCurrentPosition() < 2000){
+            arm.setPower(0.7);
+        }
+        else if (armdown && arm.getCurrentPosition() > 0) {
+            arm.setPower(-0.7);
+        }
+        else {
+            arm.setPower(0);
+        }
 
 
 
-        if (armforward && armextend.getCurrentPosition() < 1000){
+        if (armforward && armextend.getCurrentPosition() < 2000){
 
             armextend.setPower(0.45);
         }
@@ -176,14 +202,27 @@ public class RobotTeleopTank_Iterative extends OpMode{
             armextend.setPower(0);
         }
 
+        grabber.setPower(servgrabtrue - servgrabfalse);
+
+        // Use gamepad left & right Bumpers to open and close the clam
+
+        if (servrotpos) {
+            rotator.setPosition(rotator.getPosition() + 0.01);
+        }
+        else if (!servrotpos && !servrotneg){
+            rotator.setPosition(rotator.getPosition());
+        }
+        else if (servrotneg){
+            rotator.setPosition(rotator.getPosition() - 0.01);
+        }
+        //else
+         //   rotator.setPosition
 
 
 
-        // Use gamepad left & right Bumpers to open and close the claw
-        // if (gamepad1.right_bumper)
-         //   clawOffset += CLAW_SPEED;
-       // else if (gamepad1.left_bumper)
-         //   clawOffset -= CLAW_SPEED;0
+
+
+
 
         // Move both servos to new position.  Assume servos are mirror image of each other.
         // clawOffset = Range.clip(clawOffset, -0.5, 0.5);
@@ -200,19 +239,22 @@ public class RobotTeleopTank_Iterative extends OpMode{
 
         // Send telemetry message to signify robot running;
 //        telemetry.addData("claw",  "Offset = %.2f", clawOffset);
-        telemetry.addData("left",  "%.2f", front);
-        telemetry.addData("right", "%.2f", turn);
-        telemetry.addData("right", "%.2f", strafe);
-        telemetry.addData("right", "%.2f", armdirection);
-        telemetry.addData("right", armforward);
-        telemetry.addData("right", armback);
-        telemetry.addData("armextend position", armextend.getCurrentPosition());
+        telemetry.addData("direction_move",  "%.2f", front);
+        telemetry.addData("direction_turn", "%.2f", turn);
+        telemetry.addData("direction_strafe", "%.2f", strafe);
+        telemetry.addData("arm_u", armup);
+        telemetry.addData("arm_d", armdown);
+        telemetry.addData("arm_f", armforward);
+        telemetry.addData("arm_b", armback);
+        telemetry.addData("armextend_position", armextend.getCurrentPosition());
+        telemetry.addData("arm_position", arm.getCurrentPosition());
     }
+
 
     /*
      * Code to run ONCE after the driver hits STOP
      */
     @Override
     public void stop() {
-    }
-}
+    }}
+
