@@ -139,12 +139,17 @@ public class RobotTeleopTank_Iterative extends OpMode{
         double front;
         double turn;
         double strafe;
+
+        double armud;
         boolean armup;
         boolean armdown;
-        boolean armback;
+
         boolean armforward;
+        boolean armback;
+
         boolean servrotpos;
         boolean servrotneg;
+
         double servgrabtrue;
         double servgrabfalse;
 
@@ -152,15 +157,16 @@ public class RobotTeleopTank_Iterative extends OpMode{
         front = -gamepad1.left_stick_y;
         turn = -gamepad1.right_stick_x;
         strafe = -gamepad1.left_stick_x;
-        armup = gamepad1.y;
-        armdown = gamepad1.a;
-        armforward = gamepad1.dpad_up;
-        armback = gamepad1.dpad_down;
+        armud = gamepad2.left_stick_y;
+        armforward = gamepad2.dpad_up;
+        armback = gamepad2.dpad_down;
+        armup = gamepad2.y;
+        armdown = gamepad2.a;
 
-        servrotpos = gamepad1.right_bumper;
-        servrotneg = gamepad1.left_bumper;
-        servgrabtrue = gamepad1.right_trigger;
-        servgrabfalse = gamepad1.left_trigger;
+        servrotpos = gamepad2.right_bumper;
+        servrotneg = gamepad2.left_bumper;
+        servgrabtrue = gamepad2.right_trigger;
+        servgrabfalse = gamepad2.left_trigger;
 
         leftfront.setPower(front - turn - strafe);
         leftback.setPower(front - turn + strafe);
@@ -177,23 +183,40 @@ public class RobotTeleopTank_Iterative extends OpMode{
 //        rightfront.setPower(strafe);
 //        rightback.setPower(-strafe);
 
-        if (armup && arm.getCurrentPosition() < 2000){
-            arm.setPower(0.7);
+        arm.setPower(armud);
+        if (armup) {
+            arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            arm.setPower(0.8);
+            arm.setTargetPosition(2750);
         }
-        else if (armdown && arm.getCurrentPosition() > 0) {
-            arm.setPower(-0.7);
+        else if (armdown) {
+            arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            arm.setPower(0.8);
+            arm.setTargetPosition(100);
         }
-        else {
-            arm.setPower(0);
+        else if (!armup && !armdown) {
+            arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+        else if (armup && armdown) {
+            arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            arm.setPower(0.8);
+            arm.setTargetPosition(1000);
         }
 
 
 
-        if (armforward && armextend.getCurrentPosition() < 2000){
+
+
+
+
+
+
+
+        if (armforward && armextend.getCurrentPosition() < 2500){
 
             armextend.setPower(0.45);
         }
-        else if (armback && armextend.getCurrentPosition() > 0) {
+        else if (armback && armextend.getCurrentPosition() > -20) {
 
             armextend.setPower(-0.45);
         }
@@ -207,13 +230,13 @@ public class RobotTeleopTank_Iterative extends OpMode{
         // Use gamepad left & right Bumpers to open and close the clam
 
         if (servrotpos) {
-            rotator.setPosition(rotator.getPosition() + 0.01);
+            rotator.setPosition(rotator.getPosition() + 0.001);
         }
         else if (!servrotpos && !servrotneg){
             rotator.setPosition(rotator.getPosition());
         }
         else if (servrotneg){
-            rotator.setPosition(rotator.getPosition() - 0.01);
+            rotator.setPosition(rotator.getPosition() - 0.001);
         }
         //else
          //   rotator.setPosition
@@ -242,12 +265,12 @@ public class RobotTeleopTank_Iterative extends OpMode{
         telemetry.addData("direction_move",  "%.2f", front);
         telemetry.addData("direction_turn", "%.2f", turn);
         telemetry.addData("direction_strafe", "%.2f", strafe);
-        telemetry.addData("arm_u", armup);
-        telemetry.addData("arm_d", armdown);
+        telemetry.addData("armpower", "%.2f", armud);
         telemetry.addData("arm_f", armforward);
         telemetry.addData("arm_b", armback);
         telemetry.addData("armextend_position", armextend.getCurrentPosition());
         telemetry.addData("arm_position", arm.getCurrentPosition());
+        telemetry.addData("armgraber_rotation" , rotator.getPosition());
     }
 
 
