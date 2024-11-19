@@ -183,7 +183,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
 //        rightfront.setPower(strafe);
 //        rightback.setPower(-strafe);
 
-        arm.setPower(armud);
+
         if (armup) {
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             arm.setPower(0.8);
@@ -196,6 +196,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         }
         else if (!armup && !armdown) {
             arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            arm.setPower(armud);
         }
         else if (armup && armdown) {
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
