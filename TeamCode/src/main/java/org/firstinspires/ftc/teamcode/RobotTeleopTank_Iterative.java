@@ -120,6 +120,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit START
      */
+
     @Override
     public void init_loop() {
     }
@@ -127,6 +128,8 @@ public class RobotTeleopTank_Iterative extends OpMode{
     /*
      * Code to run ONCE when the driver hits START
      */
+
+
     @Override
     public void start() {
     }
@@ -143,7 +146,9 @@ public class RobotTeleopTank_Iterative extends OpMode{
         double armud;
         boolean armup;
         boolean armdown;
+        boolean armmid;
 
+        double armforbac;
         boolean armforward;
         boolean armback;
 
@@ -162,6 +167,8 @@ public class RobotTeleopTank_Iterative extends OpMode{
         armback = gamepad2.dpad_down;
         armup = gamepad2.y;
         armdown = gamepad2.a;
+        armmid = gamepad2.x;
+        armforbac = gamepad2.right_stick_y;
 
         servrotpos = gamepad2.right_bumper;
         servrotneg = gamepad2.left_bumper;
@@ -184,47 +191,75 @@ public class RobotTeleopTank_Iterative extends OpMode{
 //        rightback.setPower(-strafe);
 
 
+
+
         if (armup) {
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             arm.setPower(0.8);
             arm.setTargetPosition(2750);
+
         }
+
+
         else if (armdown) {
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             arm.setPower(0.8);
             arm.setTargetPosition(100);
         }
-        else if (!armup && !armdown) {
-            arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            arm.setPower(armud);
-        }
-        else if (armup && armdown) {
+
+
+        else if (armmid) {
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             arm.setPower(0.8);
             arm.setTargetPosition(1000);
         }
-
-
-
-
-
-
-
-
-
-
-        if (armforward && armextend.getCurrentPosition() < 2500){
-
-            armextend.setPower(0.45);
+        else if (armud == 0){
+            arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            arm.setTargetPosition(arm.getCurrentPosition());
         }
-        else if (armback && armextend.getCurrentPosition() > -20) {
-
-            armextend.setPower(-0.45);
-        }
-
         else {
-            armextend.setPower(0);
+            arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            arm.setPower(-armud);
         }
+
+
+
+
+
+
+
+
+
+
+        if (armforward){
+
+            armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armextend.setPower(0.45);
+            armextend.setTargetPosition(2700);
+        }
+        else if (armback) {
+
+            armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armextend.setPower(-0.45);
+            armextend.setTargetPosition(100);
+
+        }
+
+        else if (armforbac > -0.1 && armforbac < 0.1){
+            armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armextend.setPower(1);
+            armextend.setTargetPosition(armextend.getCurrentPosition());
+        }
+
+        else if (armextend.getCurrentPosition() > 0 && armextend.getCurrentPosition() < 2750){
+            armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            armextend.setPower(armforbac);
+        }
+        else if (armextend.getCurrentPosition() > 2750){
+            armextend.setPower(-1);
+        }
+
+
 
         grabber.setPower(servgrabtrue - servgrabfalse);
 
