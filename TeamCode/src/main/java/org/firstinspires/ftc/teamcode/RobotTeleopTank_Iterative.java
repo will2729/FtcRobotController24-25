@@ -105,6 +105,15 @@ public class RobotTeleopTank_Iterative extends OpMode{
         armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+
+        // setting up positions
+        leftfront.setTargetPosition(0);
+        leftback.setTargetPosition(0);
+        rightfront.setTargetPosition(0);
+        rightback.setTargetPosition(0);
+        arm.setTargetPosition(0);
+        armextend.setTargetPosition(0);
+
         // rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Define and initialize ALL installed servos.

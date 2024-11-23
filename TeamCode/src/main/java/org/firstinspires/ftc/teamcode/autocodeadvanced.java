@@ -41,7 +41,7 @@ public class autocodeadvanced extends LinearOpMode {
          armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
          armextend.setPower(-0.1);
          armextend.setTargetPosition(-1000);
-         
+
 
 //
 
