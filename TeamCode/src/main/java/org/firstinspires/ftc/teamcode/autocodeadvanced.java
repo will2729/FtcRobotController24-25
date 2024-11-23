@@ -30,18 +30,25 @@ public class autocodeadvanced extends LinearOpMode {
          frontL.setDirection(DcMotor.Direction.REVERSE);//-
          frontR.setDirection(DcMotor.Direction.REVERSE);//+;
 
+         backL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+         backR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+         frontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+         frontR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+         armextend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 //
          waitForStart();
          straight (6000, 0.5);
          sleepy();
          reverse (6000, 0.5);
-         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-         arm.setPower(0.1);
          arm.setTargetPosition(250);
-         armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-         armextend.setPower(-0.1);
-         armextend.setTargetPosition(-1000);
+         arm.setPower(0.1);
+         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+         armextend.setTargetPosition(-1000);
+         armextend.setPower(-0.1);
+         armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 //
 
