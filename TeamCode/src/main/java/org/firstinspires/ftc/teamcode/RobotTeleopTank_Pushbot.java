@@ -33,7 +33,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-// import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 // import com.qualcomm.robotcore.util.Range;
@@ -51,19 +50,16 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@TeleOp(name="robot: Driving the McTickler", group="Robot")
+@TeleOp(name="robot: Pusher, the McTickler", group="Robot")
 // @Disabled
-public class RobotTeleopTank_Iterative extends OpMode{
+public class RobotTeleopTank_Pushbot extends OpMode{
 
     /* Declare OpMode members. */
     public DcMotor  leftfront   = null;
     public DcMotor  rightfront  = null;
     public DcMotor  leftback  = null;
     public DcMotor  rightback  = null;
-    public DcMotor  arm = null;
-    public DcMotor  armextend = null;
-     public CRServo    grabber    = null;
-     public Servo    rotator   = null;
+
 
      // double clawOffset = 0;
 
@@ -82,8 +78,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         rightfront = hardwareMap.get(DcMotor.class, "fr");
         leftback  = hardwareMap.get(DcMotor.class, "bl");
         rightback = hardwareMap.get(DcMotor.class, "br");
-        arm = hardwareMap.get(DcMotor.class, "arm");
-        armextend = hardwareMap.get(DcMotor.class, "armextend");
+
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // Pushing the left and right sticks forward MUST make robot go forward. So adjust these two lines based on your first test drive.
@@ -92,26 +87,19 @@ public class RobotTeleopTank_Iterative extends OpMode{
         rightfront.setDirection(DcMotor.Direction.REVERSE);
         leftback.setDirection(DcMotor.Direction.REVERSE);
         rightback.setDirection(DcMotor.Direction.FORWARD);
-        arm.setDirection(DcMotor.Direction.REVERSE);
-        armextend.setDirection(DcMotor.Direction.REVERSE);
 
 
-        arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        armextend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
         // setting up positions
         leftfront.setTargetPosition(0);
         leftback.setTargetPosition(0);
         rightfront.setTargetPosition(0);
         rightback.setTargetPosition(0);
-        arm.setTargetPosition(0);
-        armextend.setTargetPosition(0);
+
 //crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy.
 
         // If there are encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
-        armextend.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
 
@@ -120,11 +108,6 @@ public class RobotTeleopTank_Iterative extends OpMode{
 
         // rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        // Define and initialize ALL installed servos.
-         grabber  = hardwareMap.get(CRServo.class, "s_grab");
-         rotator = hardwareMap.get(Servo.class, "s_rot");
-       // leftClaw.setPosition(MID_SERVO);
-       // rightClaw.setPosition(MID_SERVO);
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData(">", "Robot Ready.  Press START.");    //
@@ -216,89 +199,6 @@ public class RobotTeleopTank_Iterative extends OpMode{
 
 
 
-        if (armup) {
-            arm.setTargetPosition(2750);
-            arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            arm.setPower(0.8);
-
-
-        }
-
-
-        else if (armdown) {
-            arm.setTargetPosition(100);
-            arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            arm.setPower(0.8);
-
-        }
-
-
-        else if (armmid) {
-            arm.setTargetPosition(1000);
-            arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            arm.setPower(0.8);
-
-        }
-        else if (armud < 0.1 && armud > -0.1 && !armup && !armdown && !armmid){
-            arm.setTargetPosition(arm.getCurrentPosition());
-            arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        }
-        else {
-            arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            arm.setPower(-armud);
-        }
-
-
-
-
-
-
-
-
-
-
-        if (armforward && armextend.getCurrentPosition() < 2750){
-            armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            armextend.setPower(0.45);
-        }
-        else if (armextend.getCurrentPosition() > 2750 && armback || armforward) {
-            armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            armextend.setPower(-1);
-        }
-        else if (armback) {
-            armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            armextend.setPower(-0.45);
-        }
-        else if (!armforward && !armback){
-            armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            armextend.setTargetPosition(armextend.getCurrentPosition());
-            armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
-
-
-
-        grabber.setPower(servgrabtrue - servgrabfalse);
-
-        // Use gamepad left & right Bumpers to open and close the clam
-
-        if (servrotpos) {
-            rotator.setPosition(rotator.getPosition() + 0.003);
-        }
-        else if (!servrotpos && !servrotneg){
-            rotator.setPosition(rotator.getPosition());
-        }
-        else if (servrotneg){
-            rotator.setPosition(rotator.getPosition() - 0.003);
-        }
-        //else
-         //   rotator.setPosition
-
-
-
-
-
-
 
         // Move both servos to new position.  Assume servos are mirror image of each other.
         // clawOffset = Range.clip(clawOffset, -0.5, 0.5);
@@ -321,9 +221,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         telemetry.addData("armpower", "%.2f", armud);
         telemetry.addData("arm_f", armforward);
         telemetry.addData("arm_b", armback);
-        telemetry.addData("armextend_position", armextend.getCurrentPosition());
-        telemetry.addData("arm_position", arm.getCurrentPosition());
-        telemetry.addData("armgraber_rotation" , rotator.getPosition());
+
     }
 
 

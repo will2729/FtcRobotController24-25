@@ -39,9 +39,9 @@ public class autocodeadvanced extends LinearOpMode {
          armextend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 //
          waitForStart();
-         straight (6000, 0.5);
-         sleepy();
-         reverse (6000, 0.5);
+         straight (2000, 0.5);
+         sleepy(500);
+         reverse (2000, 0.5);
          arm.setTargetPosition(250);
          arm.setPower(0.1);
          arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -78,15 +78,12 @@ public class autocodeadvanced extends LinearOpMode {
 
          }
 
-         void sleepy(){
-         while (backL.isBusy()){
-             idle();
-         }
-         backL.setPower(0);
-         backR.setPower(0);
-         frontL.setPower(0);
-         frontR.setPower(0);
-         sleep(500);
+         void sleepy(int sleeptime) {
+             backL.setPower(0);
+             backL.setPower(0);
+             backL.setPower(0);
+             backL.setPower(0);
+             sleep(sleeptime);
          }
 
 

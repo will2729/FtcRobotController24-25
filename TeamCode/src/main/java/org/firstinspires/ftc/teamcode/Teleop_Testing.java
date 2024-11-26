@@ -33,7 +33,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-// import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 // import com.qualcomm.robotcore.util.Range;
@@ -51,9 +50,10 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@TeleOp(name="robot: Driving the McTickler", group="Robot")
+//
+@TeleOp(name="robot: Driving the McTickler: Premium Edition", group="Robot")
 // @Disabled
-public class RobotTeleopTank_Iterative extends OpMode{
+public class Teleop_Testing extends OpMode{
 
     /* Declare OpMode members. */
     public DcMotor  leftfront   = null;
@@ -84,7 +84,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         rightback = hardwareMap.get(DcMotor.class, "br");
         arm = hardwareMap.get(DcMotor.class, "arm");
         armextend = hardwareMap.get(DcMotor.class, "armextend");
-
+//
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // Pushing the left and right sticks forward MUST make robot go forward. So adjust these two lines based on your first test drive.
         // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
@@ -98,7 +98,15 @@ public class RobotTeleopTank_Iterative extends OpMode{
 
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armextend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//
 
+
+        // If there are encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
+        armextend.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+//
         // setting up positions
         leftfront.setTargetPosition(0);
         leftback.setTargetPosition(0);
@@ -106,17 +114,8 @@ public class RobotTeleopTank_Iterative extends OpMode{
         rightback.setTargetPosition(0);
         arm.setTargetPosition(0);
         armextend.setTargetPosition(0);
-//crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy.
 
-        // If there are encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
-        armextend.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-
-
-
-
+//
 
         // rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
@@ -130,7 +129,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
         telemetry.addData(">", "Robot Ready.  Press START.");    //
     }
 
-
+//
 
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit START
@@ -148,7 +147,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
     @Override
     public void start() {
     }
-
+//
     /*
      * Code to run REPEATEDLY after the driver hits START but before they hit STOP
      */
@@ -172,8 +171,18 @@ public class RobotTeleopTank_Iterative extends OpMode{
         double servgrabtrue;
         double servgrabfalse;
 
-       // boolean armext;
-       // armext = false;
+        boolean divider_gamepad1;
+        boolean divider_gamepad2;
+
+
+
+        String telementrybreak1;
+        telementrybreak1 = ("raw imput");
+
+        String telementrybreak2;
+        telementrybreak2 = ("gamepad 2");
+
+//
 
         // Run wheels in tank mode (note: The joystick goes negative when pushed forward, so negate it)
         front = -gamepad1.left_stick_y;
@@ -191,13 +200,30 @@ public class RobotTeleopTank_Iterative extends OpMode{
         servrotneg = gamepad2.left_bumper;
         servgrabtrue = gamepad2.right_trigger;
         servgrabfalse = gamepad2.left_trigger;
-
-        leftfront.setPower(front - turn - strafe);
-        leftback.setPower(front - turn + strafe);
-        rightfront.setPower(front + turn + strafe);
-        rightback.setPower(front + turn - strafe);
+//
+        divider_gamepad1 = gamepad1.left_bumper;
+        divider_gamepad2 = gamepad2.b;
 
 
+
+
+
+        if (!divider_gamepad1) {
+            leftfront.setPower(front - turn - strafe);
+            leftback.setPower(front - turn + strafe);
+            rightfront.setPower(front + turn + strafe);
+            rightback.setPower(front + turn - strafe);
+        }
+        else if (divider_gamepad1) {
+            leftfront.setPower((front - turn - strafe) / 2);
+            leftback.setPower((front - turn + strafe) / 2);
+            rightfront.setPower((front + turn + strafe) / 2);
+            rightback.setPower((front + turn - strafe) / 2);
+        }
+
+
+
+//
 
 
 
@@ -213,7 +239,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
 //        rightfront.setPower(strafe);
 //        rightback.setPower(-strafe);
 
-
+//
 
 
         if (armup) {
@@ -221,7 +247,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             arm.setPower(0.8);
 
-
+//
         }
 
 
@@ -231,7 +257,7 @@ public class RobotTeleopTank_Iterative extends OpMode{
             arm.setPower(0.8);
 
         }
-
+//
 
         else if (armmid) {
             arm.setTargetPosition(1000);
@@ -244,36 +270,47 @@ public class RobotTeleopTank_Iterative extends OpMode{
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         }
-        else {
+        else if (!divider_gamepad2){
             arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             arm.setPower(-armud);
         }
+        else if (divider_gamepad2){
+            arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            arm.setPower((-armud) / 2);
+        }
+
+
+
+
+//
 
 
 
 
 
-
-
-
-
-
-        if (armforward && armextend.getCurrentPosition() < 2750){
+        if (armforward && armextend.getCurrentPosition() < 2750 && !divider_gamepad2){
             armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             armextend.setPower(0.45);
         }
-        else if (armextend.getCurrentPosition() > 2750 && armback || armforward) {
+        else if (armextend.getCurrentPosition() > 2750) {
             armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             armextend.setPower(-1);
         }
-        else if (armback) {
+        else if (armback && !divider_gamepad2) {
             armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             armextend.setPower(-0.45);
         }
         else if (!armforward && !armback){
-            armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             armextend.setTargetPosition(armextend.getCurrentPosition());
             armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+        else if (armforward && divider_gamepad2){
+            armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            armextend.setPower(0.2);
+        }
+        else if (armback && divider_gamepad2){
+            armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            armextend.setPower(-0.2);
         }
 
 
@@ -283,20 +320,20 @@ public class RobotTeleopTank_Iterative extends OpMode{
         // Use gamepad left & right Bumpers to open and close the clam
 
         if (servrotpos) {
-            rotator.setPosition(rotator.getPosition() + 0.003);
+            rotator.setPosition(rotator.getPosition() + 0.004);
         }
         else if (!servrotpos && !servrotneg){
             rotator.setPosition(rotator.getPosition());
         }
         else if (servrotneg){
-            rotator.setPosition(rotator.getPosition() - 0.003);
+            rotator.setPosition(rotator.getPosition() - 0.004);
         }
         //else
          //   rotator.setPosition
 
 
 
-
+//
 
 
 
@@ -324,7 +361,30 @@ public class RobotTeleopTank_Iterative extends OpMode{
         telemetry.addData("armextend_position", armextend.getCurrentPosition());
         telemetry.addData("arm_position", arm.getCurrentPosition());
         telemetry.addData("armgraber_rotation" , rotator.getPosition());
+        telemetry.addData("", telementrybreak1);
+        telemetry.addData("gamepad1_leftstick_y", "%.2f", gamepad1.left_stick_y);
+        telemetry.addData("gamepad1_rightstick_y", "%.2f", gamepad1.right_stick_y);
+        telemetry.addData("gamepad1_leftstick_x", "%.2f", gamepad1.left_stick_x);
+        telemetry.addData("gamepad1_lefttrigger", "%.2f", gamepad1.left_trigger);
+        telemetry.addData("", telementrybreak2);
+        telemetry.addData("gamepad2_leftstick_y", "%.2f", gamepad2.left_stick_y);
+        telemetry.addData("gamepad2_lefttrigger", "%.2f", gamepad2.left_trigger);
+        telemetry.addData("gamepad2_righttrigger", "%.2f", gamepad2.right_trigger);
+        telemetry.addData("gamepad2_leftbumper", gamepad2.left_bumper);
+        telemetry.addData("gamepad2_rightbumper", gamepad2.right_bumper);
+        telemetry.addData("gamepad2_dpad_up", gamepad2.dpad_up);
+        telemetry.addData("gamepad2_dpad_down", gamepad2.dpad_down);
+        telemetry.addData("gamepad2_y", gamepad2.y);
+        telemetry.addData("gamepad2_b", gamepad2.b);
+        telemetry.addData("gamepad2_a", gamepad2.a);
+        telemetry.addData("gamepad2_a", gamepad2.x);
+
+//\
+
+
+
     }
+
 
 
     /*
