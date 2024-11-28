@@ -36,7 +36,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 // import com.qualcomm.robotcore.util.Range;
-
+//
 /*
  * This OpMode executes a Tank Drive control TeleOp a direct drive robot
  * The code is structured as an Iterative OpMode
@@ -49,12 +49,12 @@ import com.qualcomm.robotcore.util.Range;
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
-
+//
 //
 @TeleOp(name="robot: Driving the McTickler: Premium Edition", group="Robot")
 // @Disabled
 public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
-
+//
     /* Declare OpMode members. */
     public DcMotor  leftfront   = null;
     public DcMotor  rightfront  = null;
@@ -64,14 +64,14 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
     public DcMotor  armextend = null;
      public CRServo    grabber    = null;
      public Servo    rotator   = null;
-
+//
      // double clawOffset = 0;
-
+//
    // public static final double MID_SERVO   =  0.5 ;
 //    public static final double CLAW_SPEED  = 0.02 ;        // sets rate to move servo
 //    public static final double ARM_UP_POWER    =  0.50 ;   // Run arm motor up at 50% power
 //    public static final double ARM_DOWN_POWER  = -0.25 ;   // Run arm motor down at -25% power
-
+//
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -94,18 +94,18 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
         rightback.setDirection(DcMotor.Direction.FORWARD);
         arm.setDirection(DcMotor.Direction.REVERSE);
         armextend.setDirection(DcMotor.Direction.REVERSE);
-
-
+//
+//
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armextend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 //
-
-
+//
+//
         // If there are encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
         armextend.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
+//
 //
         // setting up positions
         leftfront.setTargetPosition(0);
@@ -116,7 +116,7 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
         armextend.setTargetPosition(0);
 //crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy. crazy? i was crazy once. they locked me in a room. a rubber room. a rubber room with rats. and rats drive me crazy.
 //
-
+//
         // rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Define and initialize ALL installed servos.
@@ -128,22 +128,22 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
         // Send telemetry message to signify robot waiting;
         telemetry.addData(">", "Robot Ready.  Press START.");    //
     }
-
 //
-
+//
+//
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit START
      */
-
+//
     @Override
     public void init_loop() {
     }
-
+//
     /*
      * Code to run ONCE when the driver hits START
      */
-
-
+//
+//
     @Override
     public void start() {
     }
@@ -156,46 +156,48 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
         double front;
         double turn;
         double strafe;
-
+//
         double armud;
         boolean armup;
         boolean armdown;
         boolean armmid;
-
+//
         boolean armforward;
         boolean armback;
-
+//
         boolean servrotpos;
         boolean servrotneg;
-
+//
         double servgrabtrue;
         double servgrabfalse;
-
+//
         boolean divider_gamepad1;
         boolean divider_gamepad2;
-
-
-
+//
+//
+//
         String telementrybreak1;
         telementrybreak1 = ("raw imput");
-
+//
         String telementrybreak2;
         telementrybreak2 = ("gamepad 2");
-
 //
-
+//
+//
         // Run wheels in tank mode (note: The joystick goes negative when pushed forward, so negate it)
         front = -gamepad1.left_stick_y;
         turn = -gamepad1.right_stick_x;
         strafe = -gamepad1.left_stick_x;
-
+//
         armud = Range.clip(gamepad2.left_stick_y, -0.65, 0.65);
+//
         armforward = gamepad2.dpad_up;
         armback = gamepad2.dpad_down;
+//
         armup = gamepad2.y;
         armdown = gamepad2.a;
         armmid = gamepad2.x;
-
+//
         servrotpos = gamepad2.right_bumper;
         servrotneg = gamepad2.left_bumper;
         servgrabtrue = gamepad2.right_trigger;
@@ -203,11 +205,11 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
 //
         divider_gamepad1 = gamepad1.left_bumper;
         divider_gamepad2 = gamepad2.b;
-
-
-
-
-
+//
+//
+//
+//
+//
         if (!divider_gamepad1) {
             leftfront.setPower(front - turn - strafe);
             leftback.setPower(front - turn + strafe);
@@ -220,15 +222,15 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
             rightfront.setPower((front + turn + strafe) / 2);
             rightback.setPower((front + turn - strafe) / 2);
         }
-
-
-
 //
-
-
-
-
-
+//
+//
+//
+//
+//
+//
+//
+//
 //        leftfront.setPower(-turn);
 //        leftback.setPower(-turn);
 //        rightfront.setPower(turn);
@@ -238,37 +240,37 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
 //        leftback.setPower(strafe);
 //        rightfront.setPower(strafe);
 //        rightback.setPower(-strafe);
-
 //
-
-
+//
+//
+//
         if (armup) {
             arm.setTargetPosition(2750);
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             arm.setPower(0.8);
-
+//
 //
         }
-
-
+//
+//
         else if (armdown) {
             arm.setTargetPosition(100);
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             arm.setPower(0.8);
-
+//
         }
 //
-
+//
         else if (armmid) {
             arm.setTargetPosition(1000);
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             arm.setPower(0.8);
-
+//
         }
         else if (armud < 0.1 && armud > -0.1 && !armup && !armdown && !armmid){
             arm.setTargetPosition(arm.getCurrentPosition());
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
+//
         }
         else if (!divider_gamepad2){
             arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -278,23 +280,23 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
             arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             arm.setPower((-armud) / 2);
         }
-
-
-
-
 //
-
-
-
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
         if (armforward && armextend.getCurrentPosition() < 2750 && !divider_gamepad2){
             armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             armextend.setPower(0.45);
         }
         else if (armextend.getCurrentPosition() > 2750) {
             armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            armextend.setPower(-1);
+            armextend.setPower(-0.1);
         }
         else if (armback && !divider_gamepad2) {
             armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -312,13 +314,13 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
             armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             armextend.setPower(-0.2);
         }
-
-
-
+//
+//
+//
         grabber.setPower(servgrabtrue - servgrabfalse);
-
+//
         // Use gamepad left & right Bumpers to open and close the clam
-
+//
         if (servrotpos) {
             rotator.setPosition(rotator.getPosition() + 0.004);
         }
@@ -330,18 +332,18 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
         }
         //else
          //   rotator.setPosition
-
-
-
 //
-
-
-
+//
+//
+//
+//
+//
+//
         // Move both servos to new position.  Assume servos are mirror image of each other.
         // clawOffset = Range.clip(clawOffset, -0.5, 0.5);
        // leftClaw.setPosition(MID_SERVO + clawOffset);
        // rightClaw.setPosition(MID_SERVO - clawOffset);
-
+//
         // Use gamepad buttons to move the arm up (Y) and down (A)
 //        if (gamepad1.y)
 //            leftArm.setPower(ARM_UP_POWER);
@@ -349,7 +351,7 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
 //            leftArm.setPower(ARM_DOWN_POWER);
 //        else
 //            leftArm.setPower(0.0);
-
+//
         // Send telemetry message to signify robot running;
 //        telemetry.addData("claw",  "Offset = %.2f", clawOffset);
         telemetry.addData("direction_move",  "%.2f", front);
@@ -378,19 +380,20 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
         telemetry.addData("gamepad2_b", gamepad2.b);
         telemetry.addData("gamepad2_a", gamepad2.a);
         telemetry.addData("gamepad2_a", gamepad2.x);
-
-//\
-
-
-
+//
+//
+//
+//
+//
     }
-
-
-
+//
+//
+//
     /*
      * Code to run ONCE after the driver hits STOP
      */
     @Override
     public void stop() {
     }}
-
+//
+//

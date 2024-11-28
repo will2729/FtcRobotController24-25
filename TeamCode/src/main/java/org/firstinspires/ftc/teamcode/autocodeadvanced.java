@@ -2,7 +2,9 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @Autonomous (name = "AutoMcTickler: Premium Edition", group = "Robot")
 public class autocodeadvanced extends LinearOpMode {
@@ -14,8 +16,16 @@ public class autocodeadvanced extends LinearOpMode {
     DcMotor backR;
 
     DcMotor frontR;
+
     DcMotor arm;
+
     DcMotor armextend;
+
+    CRServo grabber;
+
+    Servo rotator;
+
+
 
      public void runOpMode() {
          backL = hardwareMap.get(DcMotor.class, "bl");
@@ -37,18 +47,18 @@ public class autocodeadvanced extends LinearOpMode {
 
          arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
          armextend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+         grabber  = hardwareMap.get(CRServo.class, "s_grab");
+         rotator = hardwareMap.get(Servo.class, "s_rot");
+
+
+
 //
          waitForStart();
-         straight (2000, 0.5);
+         strafeLeft(200, 0.7);
          sleepy(500);
-         reverse (2000, 0.5);
-         arm.setTargetPosition(250);
-         arm.setPower(0.1);
-         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-         armextend.setTargetPosition(-1000);
-         armextend.setPower(-0.1);
-         armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
 
 //
 
@@ -68,22 +78,38 @@ public class autocodeadvanced extends LinearOpMode {
              backR.setPower(power);
              frontL.setPower(power);
              frontR.setPower(power);
+         }
 
+         void armlength(int distance, double power){
+         armextend.setTargetPosition(distance + armextend.getCurrentPosition());
 
+         armextend.setPower(power);
+         }
+         void armangle(int distance, double power){
+         arm.setTargetPosition(distance + arm.getCurrentPosition());
 
-
-
-
-
-
+         arm.setPower(power);
+         }
+         void grabgo(double power){
+         grabber.setPower(power);
+         }
+         void servrot(int distance){
+         rotator.setPosition(distance + rotator.getPosition());
          }
 
          void sleepy(int sleeptime) {
-             backL.setPower(0);
-             backL.setPower(0);
-             backL.setPower(0);
-             backL.setPower(0);
-             sleep(sleeptime);
+             boolean sleepcheck;
+             sleepcheck = true;
+             if (sleeptime > 0 && sleepcheck){
+                 sleeptime = (sleeptime - 1 );
+                 backL.setPower(0);
+                 backR.setPower(0);
+                 frontL.setPower(0);
+                 frontR.setPower(0);
+             }
+             else if (sleeptime < 1){
+                 sleepcheck = false;
+             }
          }
 
 
