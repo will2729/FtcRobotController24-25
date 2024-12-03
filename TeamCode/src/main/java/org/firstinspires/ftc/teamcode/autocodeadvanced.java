@@ -57,22 +57,20 @@ public class autocodeadvanced extends LinearOpMode {
 
 //
          waitForStart();
-         strafeLeft(200, 0.7);
-         sleepy(500);
+        // strafeLeft(200, 0.7);
+        // sleepy(500);
          armangle(2500, 0.5);
          arm.setTargetPosition(arm.getCurrentPosition());
          armlength(2750, 0.5);
          armextend.setTargetPosition(armextend.getCurrentPosition());
          servrot(0.7);
-         sleepy(500);
          grabgo(-1);
-         sleepy (100);
          grabgo(0);
-         strafeRight(300, 0.7);
-         frontL.setPower(0.5);
-         backL.setPower(0.5);
-         frontR.setPower(-0.5);
-         backR.setPower(-0.5);
+        // strafeRight(300, 0.7);
+         frontL.setPower(0.25);
+         backL.setPower(0.25);
+         frontR.setPower(-0.25);
+         backR.setPower(-0.25);
 
 
 
@@ -100,12 +98,24 @@ public class autocodeadvanced extends LinearOpMode {
          void armlength(int distance, double power){
          armextend.setTargetPosition(distance + armextend.getCurrentPosition());
 
-         armextend.setPower(power);
-         }
-         void armangle(int distance, double power){
-         arm.setTargetPosition(distance + arm.getCurrentPosition());
+         armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-         arm.setPower(power);
+         armextend.setPower(power);
+         
+         while (armextend.isBusy()){
+                 idle();
+             }
+         }
+         void armangle(int distance, double power) {
+             arm.setTargetPosition(distance + arm.getCurrentPosition());
+
+             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+             arm.setPower(power);
+
+             while (arm.isBusy()) {
+                 idle();
+             }
          }
          void grabgo(double power){
          grabber.setPower(power);
@@ -114,21 +124,7 @@ public class autocodeadvanced extends LinearOpMode {
          rotator.setPosition(distance + rotator.getPosition());
          }
 
-         void sleepy(int sleeptime) {
-             boolean sleepcheck;
-             sleepcheck = true;
-             while (sleeptime > 0 && sleepcheck){
-                 sleeptime = (sleeptime - 1 );
-                 backL.setPower(0);
-                 backR.setPower(0);
-                 frontL.setPower(0);
-                 frontR.setPower(0);
-                 sleepy (sleeptime);
-             }
-             if (sleeptime < 1){
-                 sleepcheck = false;
-             }
-         }
+
 
 
          void straight(int distance,double power){

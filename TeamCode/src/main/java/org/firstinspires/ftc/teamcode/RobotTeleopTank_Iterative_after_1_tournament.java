@@ -225,18 +225,13 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
             rightback.setPower((front + turn - strafe) / 2);
         }
         else if (!divider_gamepad1 && uberdivider_gamepad1){
-            leftfront.setPower((front - turn - strafe) / 3);
-            leftback.setPower((front - turn + strafe) / 3);
-            rightfront.setPower((front + turn + strafe) / 3);
-
-            rightback.setPower((front + turn - strafe) / 3);
-        }
-        else if (divider_gamepad1 && uberdivider_gamepad1){
             leftfront.setPower((front - turn - strafe) / 4);
             leftback.setPower((front - turn + strafe) / 4);
             rightfront.setPower((front + turn + strafe) / 4);
+
             rightback.setPower((front + turn - strafe) / 4);
         }
+
 //
 //
 //
