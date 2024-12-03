@@ -53,19 +53,36 @@ public class autocodeadvanced extends LinearOpMode {
 
 
 
+
+
 //
          waitForStart();
          strafeLeft(200, 0.7);
          sleepy(500);
+         armangle(2500, 0.5);
+         arm.setTargetPosition(arm.getCurrentPosition());
+         armlength(2750, 0.5);
+         armextend.setTargetPosition(armextend.getCurrentPosition());
+         servrot(0.7);
+         sleepy(500);
+         grabgo(-1);
+         sleepy (100);
+         grabgo(0);
+         strafeRight(300, 0.7);
+         frontL.setPower(0.5);
+         backL.setPower(0.5);
+         frontR.setPower(-0.5);
+         backR.setPower(-0.5);
+
 
 
 
 //
-
+// every 7.1350849256900215 ticks = 1mm
      }
          void strafeRight(int distance,double power){
-              backL.setTargetPosition(-distance + backL.getCurrentPosition());
-             frontL.setTargetPosition(distance + frontL.getCurrentPosition() );
+              backL.setTargetPosition  (-distance + frontR.getCurrentPosition());
+             frontL.setTargetPosition(distance + frontL.getCurrentPosition());
              backR.setTargetPosition(distance + backR.getCurrentPosition());
              frontR.setTargetPosition(-distance + frontR.getCurrentPosition());
 
@@ -93,21 +110,22 @@ public class autocodeadvanced extends LinearOpMode {
          void grabgo(double power){
          grabber.setPower(power);
          }
-         void servrot(int distance){
+         void servrot(double distance){
          rotator.setPosition(distance + rotator.getPosition());
          }
 
          void sleepy(int sleeptime) {
              boolean sleepcheck;
              sleepcheck = true;
-             if (sleeptime > 0 && sleepcheck){
+             while (sleeptime > 0 && sleepcheck){
                  sleeptime = (sleeptime - 1 );
                  backL.setPower(0);
                  backR.setPower(0);
                  frontL.setPower(0);
                  frontR.setPower(0);
+                 sleepy (sleeptime);
              }
-             else if (sleeptime < 1){
+             if (sleeptime < 1){
                  sleepcheck = false;
              }
          }

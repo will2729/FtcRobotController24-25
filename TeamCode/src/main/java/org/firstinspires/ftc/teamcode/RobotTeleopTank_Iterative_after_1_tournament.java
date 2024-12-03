@@ -172,6 +172,7 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
         double servgrabfalse;
 //
         boolean divider_gamepad1;
+        boolean uberdivider_gamepad1;
         boolean divider_gamepad2;
 //
 //
@@ -204,23 +205,37 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
         servgrabfalse = gamepad2.left_trigger;
 //
         divider_gamepad1 = gamepad1.left_bumper;
+        uberdivider_gamepad1 = gamepad1.right_bumper;
         divider_gamepad2 = gamepad2.b;
 //
 //
 //
 //
 //
-        if (!divider_gamepad1) {
+        if (!divider_gamepad1 && !uberdivider_gamepad1) {
             leftfront.setPower(front - turn - strafe);
             leftback.setPower(front - turn + strafe);
             rightfront.setPower(front + turn + strafe);
             rightback.setPower(front + turn - strafe);
         }
-        else if (divider_gamepad1) {
+        else if (divider_gamepad1 && !uberdivider_gamepad1) {
             leftfront.setPower((front - turn - strafe) / 2);
             leftback.setPower((front - turn + strafe) / 2);
             rightfront.setPower((front + turn + strafe) / 2);
             rightback.setPower((front + turn - strafe) / 2);
+        }
+        else if (!divider_gamepad1 && uberdivider_gamepad1){
+            leftfront.setPower((front - turn - strafe) / 3);
+            leftback.setPower((front - turn + strafe) / 3);
+            rightfront.setPower((front + turn + strafe) / 3);
+
+            rightback.setPower((front + turn - strafe) / 3);
+        }
+        else if (divider_gamepad1 && uberdivider_gamepad1){
+            leftfront.setPower((front - turn - strafe) / 4);
+            leftback.setPower((front - turn + strafe) / 4);
+            rightfront.setPower((front + turn + strafe) / 4);
+            rightback.setPower((front + turn - strafe) / 4);
         }
 //
 //
