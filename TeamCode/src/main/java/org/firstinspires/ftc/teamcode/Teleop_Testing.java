@@ -257,20 +257,23 @@ public class Teleop_Testing extends OpMode{
         if (armup && !armforward && !armback) {
             arm.setTargetPosition(2750);
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            arm.setPower(0.8);
+            arm.setPower(0.6);
 
-            armextend.setTargetPosition(2700);
+            armextend.setTargetPosition(2000);
             armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armextend.setPower(0.8);
+            armextend.setPower(0.6);
         }
 //
 //
         else if (armdown && !armforward && !armback) {
-            arm.setTargetPosition(100);
-            arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            arm.setPower(0.8);
-
-
+            if (armextend.getCurrentPosition() < 20){
+                arm.setTargetPosition(100);
+                arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                arm.setPower(0.6);
+            }
+            armextend.setTargetPosition(20);
+            armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armextend.setPower(0.5);
 //
         }
 //
@@ -316,7 +319,7 @@ public class Teleop_Testing extends OpMode{
             armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             armextend.setPower(-0.45);
         }
-        else if (!armforward && !armback && !armup){
+        else if (!armforward && !armback && !armup && !armdown){
             armextend.setTargetPosition(armextend.getCurrentPosition());
             armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
