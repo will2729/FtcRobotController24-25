@@ -49,30 +49,37 @@ public class autocodeadvanced extends LinearOpMode {
 
         grabber = hardwareMap.get(CRServo.class, "s_grab");
         rotator = hardwareMap.get(Servo.class, "s_rot");
+
 //
         waitForStart();
+        armangle(500, 0.25);
+        arm.setTargetPosition(arm.getCurrentPosition());
+        rotator.setPosition(0.5);
+        sleep(1000);
         // strafeLeft(200, 0.7);
         // sleepy(500);
-        armangle(2500, 0.3);
+        armangle(2000, 0.3);
         arm.setTargetPosition(arm.getCurrentPosition());
         armlength(2750, 0.3);
         armextend.setTargetPosition(armextend.getCurrentPosition());
-        servrot(0.7);
-        grabgo(-1);
-        sleep(500);
-        grabgo(0);
+      //  servrot(0.7);
+        sleep(1000);
+        grabber.setPower(-1);
+        sleep(750);
+        grabber.setPower(0);
         sleep(1000);
         armlength(100, 0.3);
+        sleep(1000);
         armextend.setTargetPosition(armextend.getCurrentPosition());
-        servrot(0.5);
+       // servrot(0.5);
         armangle(100, 0.25);
         arm.setTargetPosition(arm.getCurrentPosition());
         // strafeRight(300, 0.7);
-        frontL.setPower(0.25);
-        backL.setPower(0.25);
-        frontR.setPower(-0.25);
-        backR.setPower(-0.25);
-        sleep(30000);
+//        frontL.setPower(0.25);
+//        backL.setPower(0.25);
+//        frontR.setPower(-0.25);
+//        backR.setPower(-0.25);
+        //sleep(30000);
 //
 // every 7.1350849256900215 ticks = 1mm
     }
