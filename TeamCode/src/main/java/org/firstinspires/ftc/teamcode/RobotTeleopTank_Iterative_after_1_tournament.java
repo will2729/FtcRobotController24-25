@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 // import com.qualcomm.robotcore.util.Range;
@@ -64,6 +65,7 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
     public DcMotor  armextend = null;
      public CRServo    grabber    = null;
      public Servo    rotator   = null;
+     public DcMotor specmotor = null;
 //
      // double clawOffset = 0;
 //
@@ -84,7 +86,8 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
         rightback = hardwareMap.get(DcMotor.class, "br");
         arm = hardwareMap.get(DcMotor.class, "arm");
         armextend = hardwareMap.get(DcMotor.class, "armextend");
-//
+        specmotor = hardwareMap.get(DcMotor.class, "spec");
+
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // Pushing the left and right sticks forward MUST make robot go forward. So adjust these two lines based on your first test drive.
         // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
@@ -94,7 +97,7 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
         rightback.setDirection(DcMotor.Direction.FORWARD);
         arm.setDirection(DcMotor.Direction.REVERSE);
         armextend.setDirection(DcMotor.Direction.REVERSE);
-//
+        specmotor.setDirection(DcMotorSimple.Direction.REVERSE);
 //
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armextend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -174,6 +177,9 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
         boolean divider_gamepad1;
         boolean uberdivider_gamepad1;
         boolean divider_gamepad2;
+
+        boolean spec_up;
+        boolean spec_down;
 //
 //
 //
@@ -208,7 +214,8 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
         uberdivider_gamepad1 = gamepad1.right_bumper;
         divider_gamepad2 = gamepad2.b;
 //
-//
+        spec_up = gamepad2.dpad_left;
+        spec_down = gamepad2.dpad_right;
 //
 //
 //
@@ -259,7 +266,7 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             arm.setPower(0.8);
 
-            armextend.setTargetPosition(2700);
+            armextend.setTargetPosition(2300);
             armextend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             armextend.setPower(0.8);
         }
@@ -308,11 +315,11 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
 //
 //
 //
-        if (armforward && armextend.getCurrentPosition() < 2750 && !divider_gamepad2){
+        if (armforward && armextend.getCurrentPosition() < 2350 && !divider_gamepad2){
             armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             armextend.setPower(0.45);
         }
-        else if (armextend.getCurrentPosition() > 2750) {
+        else if (armextend.getCurrentPosition() > 2350) {
             armextend.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             armextend.setPower(-0.1);
         }
@@ -350,7 +357,16 @@ public class RobotTeleopTank_Iterative_after_1_tournament extends OpMode{
         }
         //else
          //   rotator.setPosition
-//
+
+        if (spec_up){
+            specmotor.setPower(0.5);
+        }
+        else if (spec_down) {
+            specmotor.setPower(-0.5);
+        }
+        else {
+            specmotor.setPower(0);
+        }
 //
 //
 //
