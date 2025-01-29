@@ -220,8 +220,6 @@ public class RobotTeleopTank_Iterative extends OpMode{
             arm.setTargetPosition(2750);
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             arm.setPower(0.8);
-
-
         }
 
 

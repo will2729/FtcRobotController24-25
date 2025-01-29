@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+
 @Autonomous (name = "AutoMcTickler", group = "Robot")
 public class autocodebasic extends LinearOpMode {
 
@@ -14,6 +15,13 @@ public class autocodebasic extends LinearOpMode {
     DcMotor backR;
 
     DcMotor frontR;
+
+    double ticksperrev = 537.7; // ticks
+    double circum = 301.44;  // mm
+    double fieldtilemm = 609.6;  // mm
+
+
+
 
      public void runOpMode() {
          backL = hardwareMap.get(DcMotor.class, "bl");
@@ -29,8 +37,9 @@ public class autocodebasic extends LinearOpMode {
          waitForStart();
          straight (6000, 0.5);
          reverse (6000, 0.5);
+// wheel cir 301.44
+// ticks per rev 537.7
 
-//
 
      }
          void strafeRight(int distance,double power){
@@ -57,7 +66,8 @@ public class autocodebasic extends LinearOpMode {
          }
 
 
-         void straight(int distance,double power){
+         void straight(int mm,double power){
+         int distance = (int)mm*(int)
 
             backL.setTargetPosition(distance + backL.getCurrentPosition());
             frontL.setTargetPosition(distance + frontL.getCurrentPosition());
@@ -114,6 +124,11 @@ public class autocodebasic extends LinearOpMode {
                 backR.setPower(power);
                 frontL.setPower(power);
                 frontR.setPower(power);
+
+                while (frontL.isBusy() && frontR.isBusy()){
+                    idle();
+                }
+
 
 
 

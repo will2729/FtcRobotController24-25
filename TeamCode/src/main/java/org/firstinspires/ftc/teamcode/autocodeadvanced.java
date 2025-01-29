@@ -68,14 +68,7 @@ public class autocodeadvanced extends LinearOpMode {
              backR.setPower(power);
              frontL.setPower(power);
              frontR.setPower(power);
-
-
-
-
-
-
-
-
+             //LOLZ
          }
 
          void sleepy(int sleeptime) {
